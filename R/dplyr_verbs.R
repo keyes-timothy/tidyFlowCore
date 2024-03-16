@@ -1567,7 +1567,7 @@ slice_min.flowFrame <-
     identifier <- flowCore::identifier(.data)
     tof_tibble <-
       .data |>
-      as_tof_tbl()
+      as_tof_tbl(.name_method = "featureNames")
     result <-
       tof_tibble |>
       dplyr::slice_min(

@@ -419,6 +419,62 @@ test_that("flowSet renames all columns", {
   )
 })
 
+# filter -----------------------------------------------------------------------
+
+test_that("flowFrame filter chooses only a subset of rows", {
+  expect_lt(
+    test_flowframe |>
+      dplyr::filter(feature_1 > 50) |>
+      nrow() |>
+      as.numeric(),
+    test_flowframe |>
+      nrow() |>
+      as.numeric()
+  )
+})
+
+test_that("flowSet filter chooses only specified rows", {
+  expect_lt(
+    test_flowset |>
+      filter(feature_1 > 50) |>
+      fsApply(nrow) |>
+      as.numeric() |>
+      sum(),
+    test_flowset |>
+      fsApply(nrow) |>
+      as.numeric() |>
+      sum()
+  )
+})
+
+
+# arrange ----------------------------------------------------------------------
+
+test_that("flowFrame arrange puts correct row on top", {
+  expect_equal(
+    test_flowframe |>
+      dplyr::arrange(feature_1) |>
+      dplyr::slice(1) |>
+      flowCore::exprs(),
+    test_flowframe |>
+      dplyr::slice_min(order_by = feature_1, n = 1) |>
+      flowCore::exprs()
+  )
+})
+
+
+test_that("flowSet arrange puts correct rows on top", {
+  expect_equal(
+    test_flowset |>
+      dplyr::arrange(feature_1) |>
+      dplyr::slice(1) |>
+      flowCore::fsApply(flowCore::exprs),
+    test_flowset |>
+      dplyr::slice_min(order_by = feature_1, n = 1) |>
+      flowCore::fsApply(flowCore::exprs)
+  )
+})
+
 # slice_*  ---------------------------------------------------------------------
 
 ## slice
@@ -433,7 +489,7 @@ test_that("flowFrame slice chooses only specified rows", {
   )
 })
 
-test_that("flowFrame slice chooses only specified rows", {
+test_that("flowSet slice chooses only specified rows", {
   expect_equal(
     test_flowset |>
       slice(1) |>
@@ -455,10 +511,56 @@ test_that("flowFrame slice_sample chooses the correct number of rows", {
   )
 })
 
-test_that("flowFrame slice_sample chooses the correct number of rows", {
+test_that("flowSet slice_sample chooses the correct number of rows", {
   expect_equal(
     test_flowset |>
       slice_sample(n = 100) |>
+      fsApply(nrow) |>
+      as.numeric() |>
+      sum(),
+    500L
+  )
+})
+
+## slice_head
+
+test_that("flowFrame slice_head chooses the correct number of rows", {
+  expect_equal(
+    test_flowframe |>
+      slice_head(n = 100) |>
+      nrow() |>
+      as.numeric(),
+    100L
+  )
+})
+
+test_that("flowSet slice_head chooses the correct number of rows", {
+  expect_equal(
+    test_flowset |>
+      slice_head(n = 100) |>
+      fsApply(nrow) |>
+      as.numeric() |>
+      sum(),
+    500L
+  )
+})
+
+
+## slice_tail
+test_that("flowFrame slice_tail chooses the correct number of rows", {
+  expect_equal(
+    test_flowframe |>
+      slice_tail(n = 100) |>
+      nrow() |>
+      as.numeric(),
+    100L
+  )
+})
+
+test_that("flowSet slice_tail chooses the correct number of rows", {
+  expect_equal(
+    test_flowset |>
+      slice_tail(n = 100) |>
       fsApply(nrow) |>
       as.numeric() |>
       sum(),
@@ -478,10 +580,34 @@ test_that("flowFrame slice_max chooses the correct number of rows", {
   )
 })
 
-test_that("flowFrame slice_max chooses the correct number of rows", {
+test_that("flowSet slice_max chooses the correct number of rows", {
   expect_equal(
     test_flowset |>
       slice_max(order_by = feature_1, n = 100) |>
+      fsApply(nrow) |>
+      as.numeric() |>
+      sum(),
+    500L
+  )
+})
+
+
+## slice_min
+
+test_that("flowFrame slice_min chooses the correct number of rows", {
+  expect_equal(
+    test_flowframe |>
+      dplyr::slice_min(order_by = feature_1, n = 100) |>
+      nrow() |>
+      as.numeric(),
+    100L
+  )
+})
+
+test_that("flowSet slice_min chooses the correct number of rows", {
+  expect_equal(
+    test_flowset |>
+      dplyr::slice_min(order_by = feature_1, n = 100) |>
       fsApply(nrow) |>
       as.numeric() |>
       sum(),
