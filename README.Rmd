@@ -17,11 +17,11 @@ knitr::opts_chunk$set(
 # tidyFlowCore
 
 <!-- badges: start -->
-[![GitHub issues](https://img.shields.io/github/issues/keyes-timothy/tidyflowCore)](https://github.com/keyes-timothy/tidyflowCore/issues)
-[![GitHub pulls](https://img.shields.io/github/issues-pr/keyes-timothy/tidyflowCore)](https://github.com/keyes-timothy/tidyflowCore/pulls)
 [![R-CMD-check-bioc](https://github.com/keyes-timothy/tidyFlowCore/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/keyes-timothy/tidyFlowCore/actions)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![Codecov test coverage](https://codecov.io/gh/keyes-timothy/tidyFlowCore/branch/main/graph/badge.svg)](https://app.codecov.io/gh/keyes-timothy/tidyFlowCore?branch=main)
+[![GitHub issues](https://img.shields.io/github/issues/keyes-timothy/tidyflowCore)](https://github.com/keyes-timothy/tidyflowCore/issues)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/keyes-timothy/tidyflowCore)](https://github.com/keyes-timothy/tidyflowCore/pulls)
 <!-- badges: end -->
 
 `tidyFlowCore` is an R package that bridges the gap between flow cytometry analysis using the `flowCore` package and the tidy data principles advocated by the `tidyverse.` It provides a suite of `dplyr`-, `ggplot2`-, and `tidyr`-like verbs specifically designed for working with `flowFrame` and `flowSet` objects as if they were tibbles; however, your data remain `flowCore` `flowFrame`s and `flowSet`s under this layer of abstraction. 
