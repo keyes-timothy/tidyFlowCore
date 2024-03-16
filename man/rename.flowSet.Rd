@@ -22,3 +22,11 @@ An object of the same type as .data. The output has the following properties:
 \description{
 Rename columns in a \code{\link[flowCore]{flowSet}}
 }
+\examples{
+my_flowset <- simulate_cytometry_data()$flowset
+
+my_flowset |>
+  dplyr::rename(new_feature = feature_1)
+
+
+}

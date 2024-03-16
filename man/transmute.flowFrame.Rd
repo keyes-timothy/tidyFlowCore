@@ -15,7 +15,8 @@ performs computations using the names of each channel according to
  \code{\link[flowCore]{featureNames}}. Supports tidyselection.}
 }
 \value{
-A \code{\link[flowCore]{flowFrame}}. The output has the following properties:
+A \code{\link[flowCore]{flowFrame}}. The output has the following
+properties:
 * Columns created or modified through ... will be returned in the order specified by ....
 * The number of rows is not affected.
 * Columns given the value NULL will be removed.
@@ -23,4 +24,12 @@ A \code{\link[flowCore]{flowFrame}}. The output has the following properties:
 }
 \description{
 Create, modify, and delete columns.
+}
+\examples{
+
+my_flowframe <- simulate_cytometry_data()$flowframe
+
+ my_flowframe |>
+   dplyr::transmute(new_feature = feature_1 + feature_2)
+
 }

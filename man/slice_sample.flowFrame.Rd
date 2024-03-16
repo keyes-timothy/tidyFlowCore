@@ -41,3 +41,11 @@ An object of the same type as .data. The output has the following properties:
 \description{
 Subset rows randomly
 }
+\examples{
+
+my_flowframe <- simulate_cytometry_data()$flowframe
+
+ my_flowframe |>
+   dplyr::slice_sample(n = 5)
+
+}

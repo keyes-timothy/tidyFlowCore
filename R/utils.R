@@ -1,7 +1,6 @@
 # utils.R
 # This file contains utility and helper functions for the tidyFlowCore package.
 
-
 #' Simulate Cytometry Data for FlowSet and FlowFrame Analysis
 #'
 #' @param num_cells An integer indicating the number of cells to simulate.

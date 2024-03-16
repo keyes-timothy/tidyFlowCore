@@ -34,3 +34,11 @@ An object of the same type as .data. The output has the following properties:
 \description{
 Subset rows at the head of a data structure.
 }
+\examples{
+my_flowset <- simulate_cytometry_data()$flowset
+
+my_flowset |>
+  dplyr::slice_head(n = 10)
+
+
+}

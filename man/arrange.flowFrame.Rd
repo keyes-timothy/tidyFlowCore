@@ -18,8 +18,17 @@ An object of the same type as .data. The output has the following
 properties:
 * All rows appear in the output, but (usually) in a different place.
 * Columns are not modified.
-* The \code{\link[flowCore]{flowFrame}}'s \code{\link[flowCore]{identifier}} will be preserved.
+* The \code{\link[flowCore]{flowFrame}}'s
+\code{\link[flowCore]{identifier}} will be preserved.
 }
 \description{
 Order rows using column values
+}
+\examples{
+
+my_flowframe <- simulate_cytometry_data()$flowframe
+
+ my_flowframe |>
+   dplyr::arrange(feature_1)
+
 }

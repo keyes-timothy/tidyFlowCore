@@ -32,3 +32,19 @@ to nest.
 \description{
 Nest a \code{\link[flowCore]{flowFrame}} into a \code{\link[flowCore]{flowSet}}
 }
+\examples{
+
+my_flowframe <-
+  simulate_cytometry_data()$flowframe |>
+  dplyr::mutate(
+    random_group =
+      sample(
+        c("a", "b"),
+        size = nrow(simulate_cytometry_data()$flowframe),
+        replace = TRUE
+      )
+  )
+my_flowframe |>
+  tidyr::nest(.by = random_group)
+
+}

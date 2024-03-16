@@ -30,3 +30,14 @@ Otherwise, the columns specified by `...` will be used for grouping.
 \description{
 Count the observations in each group.
 }
+\examples{
+my_flowset <- simulate_cytometry_data()$flowset
+
+my_flowset |>
+  dplyr::count()
+
+my_flowset |>
+  dplyr::count(cell_type)
+
+
+}

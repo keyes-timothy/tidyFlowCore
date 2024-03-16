@@ -26,3 +26,11 @@ A vector the same size as .data.
 pull() is similar to $. It's mostly useful because it looks a little nicer
 in pipes.
 }
+\examples{
+
+my_flowframe <- simulate_cytometry_data()$flowframe
+
+ my_flowframe |>
+   dplyr::pull(feature_1)
+
+}

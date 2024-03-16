@@ -25,3 +25,11 @@ A \code{\link[flowCore]{flowSet}}. The output has the following properties:
 \description{
 Create, modify, and delete columns.
 }
+\examples{
+my_flowset <-
+  simulate_cytometry_data()$flowset
+
+my_flowset |>
+  dplyr::mutate(new_feature = feature_1 + feature_2)
+
+}

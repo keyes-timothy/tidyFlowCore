@@ -2,7 +2,6 @@
 # This file contains functions for creating and manipulating a behind-the-scenes
 # flowCore-tibble abstraction (called a "tof_tbl") for use in tidyFlowCore.
 
-
 data(metal_masterlist, envir = environment())
 
 # tof_find_panel_info ----------------------------------------------------------
@@ -294,7 +293,6 @@ as_tof_tbl.flowSet <-
         flow_data |>
         flowCore::pData()
 
-      # experimental
       ## adds a unique tidyflowcore identifier to each row of the metadata
       ## matrix
       if (!(".tidyFlowCore_unique_identifier" %in% colnames(flowset_metadata))) {
@@ -305,16 +303,11 @@ as_tof_tbl.flowSet <-
           )
       }
 
-      ## TODO: check
       result_metadata <-
         data.frame(
           .tidyFlowCore_unique_identifier =
             rep(flowset_identifiers, times = flowset_num_cells)
         ) |>
-        # location of key mismatch
-        #dplyr::left_join(flowset_metadata, by = "name") |>
-        ## TODO: This section is experimental.
-        ##Test with repeated groupings and ungroupings
         dplyr::left_join(
           flowset_metadata,
           by = c(".tidyFlowCore_unique_identifier")

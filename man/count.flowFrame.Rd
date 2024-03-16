@@ -27,3 +27,19 @@ A data.frame containing the groupwise counts.
 \description{
 Count the observations in each group.
 }
+\examples{
+my_flowframe <-
+  simulate_cytometry_data()$flowframe |>
+    dplyr::mutate(
+      random_group =
+        sample(
+          c("a", "b"),
+          size = nrow(simulate_cytometry_data()$flowframe),
+          replace = TRUE
+        )
+    )
+
+ my_flowframe |>
+   dplyr::count(random_group)
+
+}

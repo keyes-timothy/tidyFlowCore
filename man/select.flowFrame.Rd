@@ -22,3 +22,11 @@ A \code{\link[flowCore]{flowFrame}}. The output has the following properties:
 \description{
 Keep or drop columns using their names and types.
 }
+\examples{
+
+my_flowframe <- simulate_cytometry_data()$flowframe
+
+ my_flowframe |>
+   dplyr::select(feature_1)
+
+}

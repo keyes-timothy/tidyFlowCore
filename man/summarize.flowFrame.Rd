@@ -27,3 +27,11 @@ A data.frame containing the summarized result.
 \description{
 Summarize a flowFrame.
 }
+\examples{
+
+my_flowframe <- simulate_cytometry_data()$flowframe
+
+ my_flowframe |>
+   dplyr::summarize(feature_1_mean = mean(feature_1))
+
+}

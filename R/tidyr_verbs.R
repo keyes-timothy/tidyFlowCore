@@ -32,6 +32,21 @@
 #'
 #' @export
 #'
+#' @examples
+#'
+#' my_flowframe <-
+#'   simulate_cytometry_data()$flowframe |>
+#'   dplyr::mutate(
+#'     random_group =
+#'       sample(
+#'         c("a", "b"),
+#'         size = nrow(simulate_cytometry_data()$flowframe),
+#'         replace = TRUE
+#'       )
+#'   )
+#' my_flowframe |>
+#'   tidyr::nest(.by = random_group)
+#'
 nest.flowFrame <- function(.data, ..., .by = NULL, .key = NULL, .names_sep = NULL) {
 
   .cols <- rlang::enquos(...)
@@ -77,6 +92,16 @@ nest.flowFrame <- function(.data, ..., .by = NULL, .key = NULL, .names_sep = NUL
 #' ungrouping a \code{\link[flowCore]{flowSet}} are equivalent.
 #'
 #' @export
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   tidyr::unnest(cols = c(patient, cell_type))
+#'
+#' my_flowset |>
+#'   tidyr::unnest(cols = patient)
+#'
 unnest.flowSet <-
   function (
     data,

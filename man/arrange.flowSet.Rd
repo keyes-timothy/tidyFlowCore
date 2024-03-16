@@ -18,8 +18,17 @@ An object of the same type as .data. The output has the following
 properties:
 * All rows appear in the output, but (usually) in a different place.
 * Columns are not modified.
-* The \code{\link[flowCore]{flowSet}}'s \code{\link[Biobase]{pData}} will be preserved.
+* The \code{\link[flowCore]{flowSet}}'s
+\code{\link[Biobase]{pData}} will be preserved.
 }
 \description{
 Order rows using column values
+}
+\examples{
+my_flowset <- simulate_cytometry_data()$flowset
+
+my_flowset |>
+  dplyr::arrange(feature_1)
+
+
 }

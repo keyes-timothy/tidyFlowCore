@@ -23,3 +23,11 @@ A \code{\link[flowCore]{flowSet}}. The output has the following properties:
 \description{
 Keep or drop columns using their names and types.
 }
+\examples{
+my_flowset <-
+  simulate_cytometry_data()$flowset
+
+my_flowset |>
+  dplyr::select(feature_1)
+
+}

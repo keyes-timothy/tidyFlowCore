@@ -29,3 +29,12 @@ following properties:
 \description{
 Keep rows that match a condition.
 }
+\examples{
+
+my_flowframe <- simulate_cytometry_data()$flowframe
+
+ my_flowframe |>
+   dplyr::filter(feature_1 > 50)
+
+
+}

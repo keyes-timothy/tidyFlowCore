@@ -25,3 +25,11 @@ equivalent.
 \description{
 Ungroup a flowSet
 }
+\examples{
+my_flowset <- simulate_cytometry_data()$flowset
+
+my_flowset |>
+  dplyr::ungroup()
+
+
+}

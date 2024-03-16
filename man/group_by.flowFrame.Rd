@@ -25,3 +25,19 @@ selected in .... Metadata about grouping columns will be stored in the output
 \description{
 Group a flowFrame into a flowSet using one or more variables.
 }
+\examples{
+my_flowframe <-
+  simulate_cytometry_data()$flowframe |>
+    dplyr::mutate(
+      random_group =
+        sample(
+          c("a", "b"),
+          size = nrow(simulate_cytometry_data()$flowframe),
+          replace = TRUE
+        )
+    )
+
+ my_flowframe |>
+   dplyr::group_by(random_group)
+
+}

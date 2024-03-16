@@ -39,3 +39,13 @@ ungrouping a \code{\link[flowCore]{flowSet}} are equivalent.
 Unnest a \code{\link[flowCore]{flowSet}} into a single
 \code{\link[flowCore]{flowFrame}}
 }
+\examples{
+my_flowset <- simulate_cytometry_data()$flowset
+
+my_flowset |>
+  tidyr::unnest(cols = c(patient, cell_type))
+
+my_flowset |>
+  tidyr::unnest(cols = patient)
+
+}

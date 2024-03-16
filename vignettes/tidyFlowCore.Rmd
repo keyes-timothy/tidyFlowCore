@@ -30,11 +30,11 @@ knitr::opts_chunk$set(
 
 
 ```{r vignetteSetup, echo=FALSE, message=FALSE, warning = FALSE}
-## Track time spent on making the vignette
+## Track vignette build time
 startTime <- Sys.time()
 
 ## Bib setup
-library("RefManageR")
+library(RefManageR)
 
 ## Write bibliography information
 bib <- c(
@@ -45,15 +45,17 @@ bib <- c(
     rmarkdown = citation("rmarkdown")[1],
     sessioninfo = citation("sessioninfo")[1],
     testthat = citation("testthat")[1],
+    tidyverse = citation("tidyverse")[1],
+    HDCytoData = citation("HDCytoData")[1],
     tidyFlowCore = citation("tidyFlowCore")[1]
 )
 ```
 
 # Basics
 
-## Install `tidyFlowCore`
+## Installing `tidyFlowCore`
 
-`R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg("tidyFlowCore")` is a `R` package available via the [Bioconductor](http://bioconductor.org) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg("tidyFlowCore")` by using the following commands in your `R` session:
+`R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg("tidyFlowCore")` is an `R` package available via [Bioconductor](http://bioconductor.org), an open-source repository for R packages related to biostatistics and biocomputing. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg("tidyFlowCore")` by using the following commands in your `R` session:
 
 ```{r "install", eval = FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
@@ -66,26 +68,27 @@ BiocManager::install("tidyFlowCore")
 BiocManager::valid()
 ```
 
-## Required knowledge
+## Preliminaries
 
-`r Biocpkg("tidyFlowCore")` is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data (EDIT!). That is, packages like `r Biocpkg("SummarizedExperiment")` (EDIT!).
+`r Biocpkg("tidyFlowCore")` adopts the so-called "tidy" functional programming paradigm developed by Wickham et al. in the `tidyverse` ecosystem of R packages `r Citep(bib[["tidyverse"]])`. For information about the `tidyverse` ecosytem broadly, feel free to reference the (free) [R for Data Science](https://r4ds.hadley.nz/) book, the [tidyverse website](https://www.tidyverse.org/), or [this paper](https://www.biorxiv.org/content/10.1101/2023.09.10.557072v2) describing the larger `tidyomics` project.
 
-If you are asking yourself the question "Where do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU).
+`r Biocpkg("tidyFlowCore")` integrates the `flowCore` Bioconductor package's data analysis capabilities with those of the `tidyverse`. If you're relatively unfamiliar with the Bioconductor project, you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU).
 
 ## Asking for help
 
-As package developers, we try to explain clearly how to use our packages and in which order to use the functions. But `R` and `Bioconductor` have a steep learning curve so it is critical to learn where to ask for help. The blog post quoted above mentions some but we would like to highlight the [Bioconductor support site](https://support.bioconductor.org/) as the main resource for getting help: remember to use the `tidyFlowCore` tag and check [the older posts](https://support.bioconductor.org/tag/tidyFlowCore/). Other alternatives are available such as creating GitHub issues and tweeting. However, please note that if you want to receive help you should adhere to the [posting guidelines](http://www.bioconductor.org/help/support/posting-guide/). It is particularly critical that you provide a small reproducible example and your session information so package developers can track down the source of the error.
+Learning to use `R` and `Bioconductor` can be challenging, so it's important to know where to get help. The main place to ask questions about `tidyFlowCore` is the [Bioconductor support site](https://support.bioconductor.org/). Use the `tidyFlowCore` tag there and look at [previous posts](https://support.bioconductor.org/tag/tidyFlowCore/). 
+
+You can also ask questions on GitHub or Twitter. But remember, if you're asking for help, follow the [posting guidelines](http://www.bioconductor.org/help/support/posting-guide/). Make sure to include a simple example that reproduces your issue (a ["reprex"](https://reprex.tidyverse.org/articles/learn-reprex.html)) and your session info to help developers understand and solve your problem.
 
 ## Citing `tidyFlowCore`
 
-We hope that `r Biocpkg("tidyFlowCore")` will be useful for your research. Please use the following information to cite the package and the overall approach. Thank you!
+If you use `r Biocpkg("tidyFlowCore")` for your research, please use the following citation.
 
 ```{r "citation"}
-## Citation info
 citation("tidyFlowCore")
 ```
 
-# Quick start to using `tidyFlowCore`
+# `tidyFlowCore` quick start
 
 `tidyFlowCore` allows you to treat `flowCore` data structures like tidy `data.frame`s or `tibbles`. It does so by implementing dplyr, tidyr, and ggplot2 verbs that can be deployed directly on the `flowFrame` and `flowSet` S4 classes. 
 
@@ -102,9 +105,17 @@ library(flowCore)
 
 ## Read data
 
+For our example here, we download some publicly available mass cytometry (CyTOF) data downloadable through the `r Citep(bib[["HDCytoData"]])` package. These data are made available as a `flowCore::flowSet` S4 object, `Bioconductor`'s standard data structure for cytometry data. 
+
 ```{r example, eval = requireNamespace('tidyFlowCore')}
 # read data from the HDCytoData package
 bcr_flowset <- HDCytoData::Bodenmiller_BCR_XL_flowSet()
+```
+
+To read more about this dataset, run the following command: 
+
+```{r, eval = FALSE}
+?HDCytoData::Bodenmiller_BCR_XL_flowSet
 ```
 
 
@@ -208,15 +219,9 @@ bcr_flowset |>
 
 
 
-Here is an example of you can cite your package inside the vignette:
-
-* `r Biocpkg("tidyFlowCore")` `r Citep(bib[["tidyFlowCore"]])`
-
-
-
 # Reproducibility
 
-The `r Biocpkg("tidyFlowCore")` package `r Citep(bib[["tidyFlowCore"]])` was made possible thanks to:
+The `r Biocpkg("tidyFlowCore")` package `r Citep(bib[["tidyFlowCore"]])` was made possible thanks to the following: 
 
 * R `r Citep(bib[["R"]])`
 * `r Biocpkg("BiocStyle")` `r Citep(bib[["BiocStyle"]])`
@@ -225,6 +230,7 @@ The `r Biocpkg("tidyFlowCore")` package `r Citep(bib[["tidyFlowCore"]])` was mad
 * `r CRANpkg("rmarkdown")` `r Citep(bib[["rmarkdown"]])`
 * `r CRANpkg("sessioninfo")` `r Citep(bib[["sessioninfo"]])`
 * `r CRANpkg("testthat")` `r Citep(bib[["testthat"]])`
+* `r CRANpkg("tidyverse")` `r Citep(bib[["tidyverse"]])`
 
 This package was developed using `r BiocStyle::Biocpkg("biocthis")`.
 

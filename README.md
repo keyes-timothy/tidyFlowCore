@@ -193,7 +193,7 @@ identical behavior, respectively.
 # original flowSet they come from
 bcr_flowset |> 
   dplyr::ungroup()
-#> flowFrame object 'file688f33b46c1d'
+#> flowFrame object 'file93123e01cac8'
 #> with 172791 cells and 40 observables:
 #>                    name               desc     range  minRange  maxRange
 #> $P1                Time               Time   2399633    0.0000   2399632
@@ -258,8 +258,8 @@ Please run this yourself to check for any updates on how to cite
 print(citation('tidyFlowCore'), bibtex = TRUE)
 #> To cite package 'tidyFlowCore' in publications use:
 #> 
-#>   Keyes TJ (2024). _tidyFlowCore: Integrating the flowCore with the
-#>   tidyverse_. doi:10.18129/B9.bioc.tidyFlowCore
+#>   Keyes TJ (2024). _tidyFlowCore: Bringing flowCore to the tidyverse_.
+#>   doi:10.18129/B9.bioc.tidyFlowCore
 #>   <https://doi.org/10.18129/B9.bioc.tidyFlowCore>,
 #>   https://github.com/keyes-timothy/tidyflowCore/tidyFlowCore - R
 #>   package version 0.99.0,
@@ -268,7 +268,7 @@ print(citation('tidyFlowCore'), bibtex = TRUE)
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {tidyFlowCore: Integrating the flowCore with the tidyverse},
+#>     title = {tidyFlowCore: Bringing flowCore to the tidyverse},
 #>     author = {Timothy J Keyes},
 #>     year = {2024},
 #>     url = {http://www.bioconductor.org/packages/tidyFlowCore},

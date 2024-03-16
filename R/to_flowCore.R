@@ -66,8 +66,6 @@ as_flowFrame.tof_tbl <- function(x, ...) {
     x |>
     dplyr::select(dplyr::where(is.numeric))
 
-  # TODO: EXPERIMENTAL ------
-
   # find all columns in x that are character vectors
   tof_tibble_characters <-
     x |>
@@ -92,7 +90,6 @@ as_flowFrame.tof_tbl <- function(x, ...) {
 
   tof_tibble <-
     dplyr::bind_cols(tof_tibble, tof_tibble_characters)
-  # --------
 
   maxes_and_mins <-
     tof_tibble |>
@@ -137,7 +134,6 @@ as_flowFrame.tof_tbl <- function(x, ...) {
       parameters = parameters
     )
 
-  # TODO: Experimental
   ## store codes for each character vector column in its own keyword slot
   if (length(character_codes) > 0) {
     for (i in seq_along(character_codes)) {
@@ -149,7 +145,6 @@ as_flowFrame.tof_tbl <- function(x, ...) {
   ## and store all the character vector codes together in a single keyword slot
   flowCore::keyword(result)[["character_codes"]] <- character_codes
 
-  # --------
   return(result)
 }
 
@@ -240,7 +235,6 @@ as_flowSet.tof_tbl <- function(x, group_cols, ...) {
       )
     }
 
-    # TODO: EXPERIMENTAL ------
     ## Converts all character vectors into numeric codes that can be
     ## stored in the constituent flowFrames of the flowSet
     tof_tibble_characters <-
@@ -265,7 +259,6 @@ as_flowSet.tof_tbl <- function(x, group_cols, ...) {
 
     tof_tibble <-
       dplyr::bind_cols(tof_tibble, tof_tibble_characters)
-    # --------
 
     maxes_and_mins <-
       tof_tibble |>
@@ -357,7 +350,6 @@ as_flowSet.tof_tbl <- function(x, group_cols, ...) {
     row.names(result_pData) <- result_pData$.tidyFlowCore_unique_identifier
     flowCore::pData(result) <- result_pData
 
-    # TODO: Experimental ------------
     if (length(character_codes) > 0) {
       for (j in seq_along(result)) {
         for (i in seq_along(character_codes)) {

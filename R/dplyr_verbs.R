@@ -4,7 +4,7 @@
 # dplyr methods ----------------------------------------------------------------
 
 
-## mutate---------------------
+## mutate ----------------------------------------------------------------------
 
 #' Create, modify, and delete columns.
 #'
@@ -27,6 +27,21 @@
 #' @importFrom flowCore identifier
 #'
 #' @export
+#'
+#' @examples
+#' my_flowframe <-
+#'   simulate_cytometry_data()$flowframe |>
+#'     dplyr::mutate(
+#'       random_group =
+#'         sample(
+#'           c("a", "b"),
+#'           size = nrow(simulate_cytometry_data()$flowframe),
+#'           replace = TRUE
+#'         )
+#'     )
+#'
+#'  my_flowframe |>
+#'    dplyr::mutate(new_feature = feature_1 + feature_2)
 #'
 mutate.flowFrame <- function(.data, ...) {
   identifier <- flowCore::identifier(.data)
@@ -64,6 +79,13 @@ mutate.flowFrame <- function(.data, ...) {
 #'
 #' @export
 #'
+#' @examples
+#' my_flowset <-
+#'   simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::mutate(new_feature = feature_1 + feature_2)
+#'
 mutate.flowSet <- function(.data, ...) {
   result_list <- list()
   for (i in seq_along(.data)) {
@@ -76,7 +98,7 @@ mutate.flowSet <- function(.data, ...) {
   return(result)
 }
 
-## select -----------
+## select ----------------------------------------------------------------------
 
 #' Keep or drop columns using their names and types.
 #'
@@ -92,6 +114,14 @@ mutate.flowSet <- function(.data, ...) {
 #' * The \code{\link[flowCore]{flowFrame}}'s \code{\link[flowCore]{identifier}} will be preserved.
 #'
 #' @export
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::select(feature_1)
+#'
 select.flowFrame <- function(.data, ...) {
   identifier <- flowCore::identifier(.data)
   tof_tibble <-
@@ -120,6 +150,14 @@ select.flowFrame <- function(.data, ...) {
 #' * The \code{\link[flowCore]{flowSet}}'s \code{\link[Biobase]{pData}} will be preserved.
 #'
 #' @export
+#'
+#' @examples
+#' my_flowset <-
+#'   simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::select(feature_1)
+#'
 select.flowSet <- function(.data, ...) {
   result_list <- list()
   for (i in seq_along(.data)) {
@@ -132,7 +170,7 @@ select.flowSet <- function(.data, ...) {
   return(result)
 }
 
-## rename -----------
+## rename ----------------------------------------------------------------------
 
 #' Rename columns in a \code{\link[flowCore]{flowFrame}}
 #'
@@ -152,6 +190,12 @@ select.flowSet <- function(.data, ...) {
 #'
 #' @export
 #'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::rename(new_feature = feature_1)
 #'
 rename.flowFrame <- function(.data, ...) {
   identifier <- flowCore::identifier(.data)
@@ -189,6 +233,13 @@ rename.flowFrame <- function(.data, ...) {
 #' @export
 #'
 #'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::rename(new_feature = feature_1)
+#'
+#'
 rename.flowSet <- function(.data, ...) {
   result_list <- list()
   for (i in seq_along(.data)) {
@@ -201,7 +252,7 @@ rename.flowSet <- function(.data, ...) {
   return(result)
 }
 
-## rename_with -----------
+## rename_with -----------------------------------------------------------------
 
 #' Rename columns in a \code{\link[flowCore]{flowFrame}}
 #'
@@ -226,6 +277,14 @@ rename.flowSet <- function(.data, ...) {
 #' @importFrom flowCore pData
 #'
 #' @export
+#'
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::rename_with(.fn = toupper)
 #'
 rename_with.flowFrame <- function(.data, .fn, .cols = dplyr::everything(), ...) {
   identifier <- flowCore::identifier(.data)
@@ -265,6 +324,14 @@ rename_with.flowFrame <- function(.data, .fn, .cols = dplyr::everything(), ...) 
 #'
 #' @export
 #'
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::rename_with(.fn = toupper)
+#'
+#'
 rename_with.flowSet <- function(.data, .fn, .cols = dplyr::everything(), ...) {
   result_list <- list()
   for (i in seq_along(.data)) {
@@ -278,7 +345,7 @@ rename_with.flowSet <- function(.data, .fn, .cols = dplyr::everything(), ...) {
 }
 
 
-## filter ----------
+## filter ----------------------------------------------------------------------
 
 #' Keep rows that match a condition.
 #'
@@ -305,6 +372,13 @@ rename_with.flowSet <- function(.data, .fn, .cols = dplyr::everything(), ...) {
 #' @importFrom flowCore identifier
 #'
 #' @export
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::filter(feature_1 > 50)
 #'
 #'
 filter.flowFrame <- function(.data, ..., .by = NULL, .preserve = FALSE) {
@@ -349,6 +423,15 @@ filter.flowFrame <- function(.data, ..., .by = NULL, .preserve = FALSE) {
 #'
 #' @export
 #'
+#'
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::filter(feature_1 > 50)
+#'
+#'
 filter.flowSet <- function(.data, ..., .by = NULL, .preserve = FALSE) {
   result_list <- list()
   for (i in seq_along(.data)) {
@@ -361,7 +444,7 @@ filter.flowSet <- function(.data, ..., .by = NULL, .preserve = FALSE) {
   return(result)
 }
 
-## arrange -----------
+## arrange ---------------------------------------------------------------------
 
 #' Order rows using column values
 #'
@@ -375,13 +458,22 @@ filter.flowSet <- function(.data, ..., .by = NULL, .preserve = FALSE) {
 #' properties:
 #' * All rows appear in the output, but (usually) in a different place.
 #' * Columns are not modified.
-#' * The \code{\link[flowCore]{flowFrame}}'s \code{\link[flowCore]{identifier}} will be preserved.
+#' * The \code{\link[flowCore]{flowFrame}}'s
+#' \code{\link[flowCore]{identifier}} will be preserved.
 #'
 #' @importFrom dplyr arrange
 #'
 #' @importFrom flowCore identifier
 #'
 #' @export
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::arrange(feature_1)
+#'
 arrange.flowFrame <- function(.data, ..., .by_group = FALSE) {
   tof_tibble <-
     .data |>
@@ -406,7 +498,8 @@ arrange.flowFrame <- function(.data, ..., .by_group = FALSE) {
 #' properties:
 #' * All rows appear in the output, but (usually) in a different place.
 #' * Columns are not modified.
-#' * The \code{\link[flowCore]{flowSet}}'s \code{\link[Biobase]{pData}} will be preserved.
+#' * The \code{\link[flowCore]{flowSet}}'s
+#' \code{\link[Biobase]{pData}} will be preserved.
 #'
 #' @importFrom dplyr arrange
 #'
@@ -416,6 +509,14 @@ arrange.flowFrame <- function(.data, ..., .by_group = FALSE) {
 #' @importFrom methods as
 #'
 #' @export
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::arrange(feature_1)
+#'
+#'
 arrange.flowSet <- function(.data, ..., .by_group = FALSE) {
   result_list <- list()
   for (i in seq_along(.data)) {
@@ -428,7 +529,7 @@ arrange.flowSet <- function(.data, ..., .by_group = FALSE) {
   return(result)
 }
 
-## transmute -----------
+## transmute -------------------------------------------------------------------
 
 #' Create, modify, and delete columns.
 #'
@@ -439,7 +540,8 @@ arrange.flowSet <- function(.data, ..., .by_group = FALSE) {
 #' performs computations using the names of each channel according to
 #'  \code{\link[flowCore]{featureNames}}. Supports tidyselection.
 #'
-#' @returns A \code{\link[flowCore]{flowFrame}}. The output has the following properties:
+#' @returns A \code{\link[flowCore]{flowFrame}}. The output has the following
+#' properties:
 #' * Columns created or modified through ... will be returned in the order specified by ....
 #' * The number of rows is not affected.
 #' * Columns given the value NULL will be removed.
@@ -450,6 +552,13 @@ arrange.flowSet <- function(.data, ..., .by_group = FALSE) {
 #' @importFrom flowCore identifier
 #'
 #' @export
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::transmute(new_feature = feature_1 + feature_2)
 #'
 transmute.flowFrame <- function(.data, ...) {
   tof_tibble <-
@@ -488,6 +597,14 @@ transmute.flowFrame <- function(.data, ...) {
 #'
 #' @export
 #'
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::transmute(new_feature = feature_1 + feature_2)
+#'
+#'
 transmute.flowSet <- function(.data, ...) {
   result_list <- list()
   for (i in seq_along(.data)) {
@@ -500,7 +617,7 @@ transmute.flowSet <- function(.data, ...) {
   return(result)
 }
 
-## summarize -----------
+## summarize -------------------------------------------------------------------
 
 #' Summarize a flowFrame.
 #'
@@ -523,6 +640,13 @@ transmute.flowSet <- function(.data, ...) {
 #' @importFrom dplyr summarize
 #'
 #' @export
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::summarise(feature_1_mean = mean(feature_1))
 #'
 summarise.flowFrame <- function(.data, ..., .by = NULL, .groups = NULL) {
   tof_tibble <-
@@ -555,6 +679,14 @@ summarise.flowFrame <- function(.data, ..., .by = NULL, .groups = NULL) {
 #' @importFrom dplyr summarise
 #'
 #' @export
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::summarize(feature_1_mean = mean(feature_1))
+#'
 summarize.flowFrame <- function(.data, ..., .by = NULL, .groups = NULL) {
   result <-
     dplyr::summarise(.data = .data, ..., .by = {{ .by }}, .groups = .groups)
@@ -589,6 +721,15 @@ summarize.flowFrame <- function(.data, ..., .by = NULL, .groups = NULL) {
 #' @importFrom flowCore pData
 #'
 #' @export
+#'
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::summarise(feature_1_mean = mean(feature_1))
+#'
+#'
 summarise.flowSet <- function(.data, ..., .by = NULL, .groups = NULL) {
   result_list <- list()
   for (i in seq_along(.data)) {
@@ -628,13 +769,21 @@ summarise.flowSet <- function(.data, ..., .by = NULL, .groups = NULL) {
 #' @importFrom dplyr summarise
 #'
 #' @export
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::summarize(feature_1_mean = mean(feature_1))
+#'
+#'
 summarize.flowSet <- function(.data, ..., .by = NULL, .groups = NULL) {
   result <-
     dplyr::summarise(.data = .data, ..., .by = {{ .by }}, .groups = .groups)
   return(result)
 }
 
-## group_by -----------
+## group_by --------------------------------------------------------------------
 
 #' Group a flowFrame into a flowSet using one or more variables.
 #'
@@ -657,6 +806,22 @@ summarize.flowSet <- function(.data, ..., .by = NULL, .groups = NULL) {
 #' @importFrom dplyr group_by_drop_default
 #'
 #' @export
+#'
+#' @examples
+#' my_flowframe <-
+#'   simulate_cytometry_data()$flowframe |>
+#'     dplyr::mutate(
+#'       random_group =
+#'         sample(
+#'           c("a", "b"),
+#'           size = nrow(simulate_cytometry_data()$flowframe),
+#'           replace = TRUE
+#'         )
+#'     )
+#'
+#'  my_flowframe |>
+#'    dplyr::group_by(random_group)
+#'
 group_by.flowFrame <-
   function(.data, ..., .add = FALSE, .drop = dplyr::group_by_drop_default(.data)) {
     tof_tibble <-
@@ -675,7 +840,7 @@ group_by.flowFrame <-
     return(result)
   }
 
-## ungroup ---------
+## ungroup ---------------------------------------------------------------------
 
 #' Ungroup a flowSet
 #'
@@ -705,6 +870,14 @@ group_by.flowFrame <-
 #' @importFrom rlang !!!
 #'
 #' @export
+#'
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::ungroup()
+#'
 #'
 ungroup.flowSet <- function(x, ...) {
   # Note that .tidytof_unique_identifier is not meant to be directly accessed
@@ -769,7 +942,6 @@ ungroup.flowSet <- function(x, ...) {
     # causes a bug when "name" is one of the metadata variables being ungrouped
     # because it causes a key mismatch in #tof_tbl.R's as_tof_tbl function
     flowCore::pData(x) |>
-    # experimental
     dplyr::mutate(.tidyFlowCore_name = .data$name) |>
     dplyr::mutate(
       dplyr::across(
@@ -799,7 +971,7 @@ ungroup.flowSet <- function(x, ...) {
   return(result)
 }
 
-## count -----------
+## count -----------------------------------------------------------------------
 
 #' Count the observations in each group.
 #'
@@ -822,6 +994,21 @@ ungroup.flowSet <- function(x, ...) {
 #' @importFrom dplyr count
 #'
 #' @export
+#'
+#' @examples
+#' my_flowframe <-
+#'   simulate_cytometry_data()$flowframe |>
+#'     dplyr::mutate(
+#'       random_group =
+#'         sample(
+#'           c("a", "b"),
+#'           size = nrow(simulate_cytometry_data()$flowframe),
+#'           replace = TRUE
+#'         )
+#'     )
+#'
+#'  my_flowframe |>
+#'    dplyr::count(random_group)
 #'
 count.flowFrame <- function(x, ..., wt = NULL, sort = FALSE, name = NULL) {
   tof_tibble <-
@@ -861,6 +1048,17 @@ count.flowFrame <- function(x, ..., wt = NULL, sort = FALSE, name = NULL) {
 #' @importFrom flowCore identifier
 #'
 #' @export
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::count()
+#'
+#' my_flowset |>
+#'   dplyr::count(cell_type)
+#'
+#'
 count.flowSet <- function(x, ..., wt = NULL, sort = FALSE, name = NULL) {
   if (missing(...)) {
     result <-
@@ -891,7 +1089,7 @@ count.flowSet <- function(x, ..., wt = NULL, sort = FALSE, name = NULL) {
   return(result)
 }
 
-## pull -----------
+## pull ------------------------------------------------------------------------
 
 #' Extract a single column.
 #'
@@ -915,6 +1113,14 @@ count.flowSet <- function(x, ..., wt = NULL, sort = FALSE, name = NULL) {
 #' @importFrom dplyr pull
 #'
 #' @export
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::pull(feature_1)
+#'
 pull.flowFrame <- function(.data, var = -1, name = NULL, ...) {
   tof_tibble <-
     .data |>
@@ -947,6 +1153,14 @@ pull.flowFrame <- function(.data, var = -1, name = NULL, ...) {
 #' @importFrom dplyr pull
 #'
 #' @export
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::pull(feature_1)
+#'
+#'
 pull.flowSet <- function(.data, var = -1, name = NULL, ...) {
   tof_tibble <-
     .data |>
@@ -958,9 +1172,9 @@ pull.flowSet <- function(.data, var = -1, name = NULL, ...) {
 }
 
 
-## slice methods -----------
+## slice methods ---------------------------------------------------------------
 
-### slice---------
+### slice ----------------------------------------------------------------------
 
 #' Subset rows using their positions
 #'
@@ -984,6 +1198,13 @@ pull.flowSet <- function(.data, var = -1, name = NULL, ...) {
 #' @importFrom flowCore identifier
 #'
 #' @export
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::slice(1)
 #'
 slice.flowFrame <- function(.data, ..., .by = NULL, .preserve = FALSE) {
   identifier <- flowCore::identifier(.data)
@@ -1023,6 +1244,13 @@ slice.flowFrame <- function(.data, ..., .by = NULL, .preserve = FALSE) {
 #'
 #' @export
 #'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::slice(1)
+#'
+#'
 slice.flowSet <- function(.data, ..., .by = NULL, .preserve = FALSE) {
   result_list <- list()
   for (i in seq_along(.data)) {
@@ -1041,7 +1269,7 @@ slice.flowSet <- function(.data, ..., .by = NULL, .preserve = FALSE) {
 }
 
 
-### slice_sample ------------
+### slice_sample ---------------------------------------------------------------
 
 #' Subset rows randomly
 #'
@@ -1080,6 +1308,14 @@ slice.flowSet <- function(.data, ..., .by = NULL, .preserve = FALSE) {
 #' @importFrom flowCore identifier
 #'
 #' @export
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::slice_sample(n = 5)
+#'
 slice_sample.flowFrame <- function(.data, ..., n, prop, by = NULL, weight_by = NULL, replace = FALSE) {
   identifier <- flowCore::identifier(.data)
   tof_tibble <-
@@ -1140,6 +1376,13 @@ slice_sample.flowFrame <- function(.data, ..., n, prop, by = NULL, weight_by = N
 #'
 #' @export
 #'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::slice_sample(n = 10)
+#'
+#'
 slice_sample.flowSet <- function(.data, ..., n, prop,  by = NULL, weight_by = NULL, replace = FALSE) {
   result_list <- list()
   for (i in seq_along(.data)) {
@@ -1161,7 +1404,7 @@ slice_sample.flowSet <- function(.data, ..., n, prop,  by = NULL, weight_by = NU
 }
 
 
-### slice_head --------
+### slice_head -----------------------------------------------------------------
 
 #' Subset rows at the head of a data structure.
 #'
@@ -1193,6 +1436,14 @@ slice_sample.flowSet <- function(.data, ..., n, prop,  by = NULL, weight_by = NU
 #' @importFrom flowCore identifier
 #'
 #' @export
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::slice_head(n = 5)
+#'
 slice_head.flowFrame <- function(.data, ..., n, prop, by = NULL) {
   identifier <- flowCore::identifier(.data)
   tof_tibble <-
@@ -1243,6 +1494,13 @@ slice_head.flowFrame <- function(.data, ..., n, prop, by = NULL) {
 #'
 #' @export
 #'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::slice_head(n = 10)
+#'
+#'
 slice_head.flowSet <- function(.data, ..., n, prop, by = NULL) {
   result_list <- list()
   for (i in seq_along(.data)) {
@@ -1261,7 +1519,7 @@ slice_head.flowSet <- function(.data, ..., n, prop, by = NULL) {
   return(result)
 }
 
-### slice_tail --------
+### slice_tail -----------------------------------------------------------------
 
 #' Subset rows at the tail of a data structure.
 #'
@@ -1293,6 +1551,15 @@ slice_head.flowSet <- function(.data, ..., n, prop, by = NULL) {
 #' @importFrom flowCore identifier
 #'
 #' @export
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::slice_tail(n = 5)
+#'
+#'
 slice_tail.flowFrame <- function(.data, ..., n, prop, by = NULL) {
   identifier <- flowCore::identifier(.data)
   tof_tibble <-
@@ -1343,6 +1610,13 @@ slice_tail.flowFrame <- function(.data, ..., n, prop, by = NULL) {
 #'
 #' @export
 #'
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::slice_tail(n = 10)
+#'
 slice_tail.flowSet <- function(.data, ..., n, prop, by = NULL) {
   result_list <- list()
   for (i in seq_along(.data)) {
@@ -1361,7 +1635,7 @@ slice_tail.flowSet <- function(.data, ..., n, prop, by = NULL) {
   return(result)
 }
 
-### slice_max ------------
+### slice_max ------------------------------------------------------------------
 
 #' Subset rows of a data structure in order.
 #'
@@ -1404,6 +1678,16 @@ slice_tail.flowSet <- function(.data, ..., n, prop, by = NULL) {
 #' @importFrom flowCore identifier
 #'
 #' @export
+#'
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::slice_max(order_by = feature_1, n = 5)
+#'
+#'
 slice_max.flowFrame <-
   function(
     .data,
@@ -1477,6 +1761,13 @@ slice_max.flowFrame <-
 #' @importFrom flowCore pData
 #'
 #' @export
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::slice_max(order_by = feature_1, n = 10)
+#'
 slice_max.flowSet <-
   function(
     .data,
@@ -1509,7 +1800,7 @@ slice_max.flowSet <-
   }
 
 
-### slice_min --------
+### slice_min ------------------------------------------------------------------
 
 
 #' Subset rows of a data structure in order.
@@ -1553,6 +1844,16 @@ slice_max.flowSet <-
 #' @importFrom flowCore identifier
 #'
 #' @export
+#'
+#'
+#' @examples
+#'
+#' my_flowframe <- simulate_cytometry_data()$flowframe
+#'
+#'  my_flowframe |>
+#'    dplyr::slice_min(order_by = feature_1, n = 5)
+#'
+#'
 slice_min.flowFrame <-
   function(
     .data,
@@ -1626,6 +1927,14 @@ slice_min.flowFrame <-
 #' @importFrom flowCore pData
 #'
 #' @export
+#'
+#' @examples
+#' my_flowset <- simulate_cytometry_data()$flowset
+#'
+#' my_flowset |>
+#'   dplyr::slice_max(order_by = feature_1, n = 10)
+#'
+#'
 slice_min.flowSet <-
   function(
     .data,

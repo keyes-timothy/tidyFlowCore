@@ -21,3 +21,11 @@ An object of the same type as .data. The output has the following properties:
 \description{
 Rename columns in a \code{\link[flowCore]{flowFrame}}
 }
+\examples{
+
+my_flowframe <- simulate_cytometry_data()$flowframe
+
+ my_flowframe |>
+   dplyr::rename(new_feature = feature_1)
+
+}
