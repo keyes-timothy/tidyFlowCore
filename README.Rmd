@@ -1,0 +1,196 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "#>",
+    warning = FALSE, 
+    fig.path = "man/figures/README-",
+    out.width = "100%"
+)
+```
+
+# tidyFlowCore
+
+<!-- badges: start -->
+[![GitHub issues](https://img.shields.io/github/issues/keyes-timothy/tidyflowCore)](https://github.com/keyes-timothy/tidyflowCore/issues)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/keyes-timothy/tidyflowCore)](https://github.com/keyes-timothy/tidyflowCore/pulls)
+<!-- badges: end -->
+
+`tidyFlowCore` is an R package that bridges the gap between flow cytometry analysis using the flowCore package and the tidy data principles advocated by the tidyverse. It provides a suite of `dplyr`-, `ggplot2`-, and `tidyr`-like verbs specifically designed for working with `flowFrame` and `flowSet` objects as if they were tibbles; however, your data remain `flowCore` `flowFrame`s and `flowSet`s under this layer of abstraction. 
+
+Using this approach, `tidyFlowCore` enables intuitive and streamlined analysis workflows that can leverage both the Bioconductor and tidyverse ecosystems for cytometry data.  
+
+## Installation instructions
+
+Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then install `tidyFlowCore` from [Bioconductor](http://bioconductor.org/) using the following code:
+
+```{r 'install', eval = FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+    install.packages("BiocManager")
+}
+
+BiocManager::install("tidyFlowCore")
+```
+
+And the development version from [GitHub](https://github.com/keyes-timothy/tidyflowCore) with:
+
+```{r 'install_dev', eval = FALSE}
+BiocManager::install("keyes-timothy/tidyFlowCore")
+```
+
+## Example
+
+`tidyFlowCore` allows you to treat `flowCore` data structures like tidy `data.frame`s or `tibbles`. It does so by implementing dplyr, tidyr, and ggplot2 verbs that can be deployed directly on the `flowFrame` and `flowSet` S4 classes. 
+
+In this section, we give a brief example of how `tidyFlowCore` can enable a data analysis pipeline to use all the useful functions of the `flowCore` package and many of the functions of the `dplyr`, `tidyr`, and `ggplot2` packages. 
+
+### Load required packages
+
+```{r, warning = FALSE}
+library(tidyFlowCore)
+library(flowCore)
+```
+
+
+
+### Read data
+
+```{r example, eval = requireNamespace('tidyFlowCore')}
+# read data from the HDCytoData package
+bcr_flowset <- HDCytoData::Bodenmiller_BCR_XL_flowSet()
+```
+
+
+### Data transformation
+
+The `flowCore` package natively supports multiple types of data preprocessing and transformations for cytometry data through the use of its `tranform` class. 
+
+For example, if we want to apply the standard arcsinh transformation often used for CyTOF data to our current dataset, we could use the following code: 
+
+```{r}
+asinh_transformation <- flowCore::arcsinhTransform(a = 0, b = 1/5, c = 0)
+transformation_list <- 
+  flowCore::transformList(
+    colnames(bcr_flowset), 
+    asinh_transformation
+  )
+
+transformed_bcr_flowset <- flowCore::transform(bcr_flowset, transformation_list)
+```
+
+Alternatively, we can also use the `tidyverse`'s functional programming paradigm to perform the same transformation. For this, we use the mutate-across framework via `tidyFlowCore`:
+
+```{r}
+transformed_bcr_flowset <- 
+  bcr_flowset |>
+  dplyr::mutate(across(-ends_with("_id"), \(.x) asinh(.x / 5)))
+```
+
+### Cell type counting
+
+Suppose we're interested in counting the number of cells that belong to each cell type (encoded in the `population_id` column of `bcr_flowset`) in our dataset. Using standard `flowCore` functions, we could perform this calculation in a few steps: 
+
+```{r}
+# extract all expression matrices from our flowSet 
+combined_matrix <- flowCore::fsApply(bcr_flowset, exprs)
+
+# take out the concatenated population_id column 
+combined_population_id <- combined_matrix[, 'population_id']
+
+# perform the calculation
+table(combined_population_id)
+```
+
+`tidyFlowCore` allows us to perform the same operation simply using the `dplyr` package's `count` function: 
+
+```{r}
+bcr_flowset |> 
+  dplyr::count(population_id)
+```
+
+And `tidyFlowCore` also makes it easy to perform the counting broken down by other variables in our metadata: 
+
+```{r}
+bcr_flowset |> 
+  # use the .tidyFlowCore_identifier pronoun to access the name of 
+  # each experiment in the flowSet 
+  dplyr::count(.tidyFlowCore_identifier, population_id)
+```
+
+
+### Nesting and unnesting
+
+`flowFrame` and `flowSet` data objects have a clear relationship with one another in the `flowCore` API - essentially nested `flowFrame`s. In other words, `flowSet`s are made up of multiple `flowFrame`s!
+
+`tidyFlowCore` provides a useful API for converting between `flowSet` and `flowFrame` data structures at various degrees of nesting using the `group`/`nest` and `ungroup`/`unnest` verbs. Note that in the dplyr and tidyr APIs, `group`/`nest` and `ungroup`/`unnest` are **not** synonyms (grouped `data.frames` are different from nested `data.frames`). However, because of how `flowFrame`s and `flowSet`s are structured, `tidyFlowCore`'s `group`/`nest` and `ungroup`/`unnest` functions have identical behavior, respectively.
+
+```{r}
+# unnesting a flowSet results in a flowFrame with an additional column, 
+# 'tidyFlowCore_name` that identifies cells based on which experiment in the 
+# original flowSet they come from
+bcr_flowset |> 
+  dplyr::ungroup()
+```
+
+
+```{r}
+# flowSets can be unnested and renested for various analyses
+bcr_flowset |> 
+  dplyr::ungroup() |> 
+  # group_by cell type
+  dplyr::group_by(population_id) |> 
+  # calculate the mean HLA-DR expression of each cell population
+  dplyr::summarize(mean_expression = mean(`HLA-DR(Yb174)Dd`)) |> 
+  dplyr::select(population_id, mean_expression)
+```
+
+
+
+
+### Plotting
+
+`tidyFlowCore` also provides a direct interface between `ggplot2` and `flowFrame` or `flowSet` data objects. For example...
+
+```{r}
+library(ggplot2)
+bcr_flowset |> 
+  dplyr::mutate(across(-ends_with("_id"), \(.x) asinh(.x / 5))) |> 
+  ggplot(aes(x = `CD45(In115)Dd`, y = `CD4(Nd145)Dd`)) + 
+  geom_point(size = 0.1, alpha = 0.1) +
+  facet_wrap(facets = vars(population_id))
+```
+
+
+## Citation
+
+Below is the citation output from using `citation('tidyFlowCore')` in R. Please
+run this yourself to check for any updates on how to cite __tidyFlowCore__.
+
+```{r 'citation', eval = requireNamespace('tidyFlowCore')}
+print(citation('tidyFlowCore'), bibtex = TRUE)
+```
+
+Please note that the `tidyFlowCore` was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.
+
+## Code of Conduct
+
+Please note that the `tidyFlowCore` project is released with a [Contributor Code of Conduct](http://bioconductor.org/about/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
+
+## Development tools
+
+* Continuous code testing is possible thanks to [GitHub actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)  through `r BiocStyle::CRANpkg('usethis')`, `r BiocStyle::CRANpkg('remotes')`, and `r BiocStyle::CRANpkg('rcmdcheck')` customized to use [Bioconductor's docker containers](https://www.bioconductor.org/help/docker/) and `r BiocStyle::Biocpkg('BiocCheck')`.
+* Code coverage assessment is possible thanks to [codecov](https://codecov.io/gh) and `r BiocStyle::CRANpkg('covr')`.
+* The [documentation website](http://keyes-timothy.github.io/tidyFlowCore) is automatically updated thanks to `r BiocStyle::CRANpkg('pkgdown')`.
+* The code is styled automatically thanks to `r BiocStyle::CRANpkg('styler')`.
+* The documentation is formatted thanks to `r BiocStyle::CRANpkg('devtools')` and `r BiocStyle::CRANpkg('roxygen2')`.
+
+For more details, check the `dev` directory.
+
+This package was developed using `r BiocStyle::Biocpkg('biocthis')`.
+
+

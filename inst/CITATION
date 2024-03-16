@@ -1,0 +1,25 @@
+pkgVer <- function(pkg) {
+    if (!exists("meta") || is.null(meta)) meta <- packageDescription(pkg)
+    ver <- meta$Version
+    paste0('https://github.com/keyes-timothy/tidyflowCore/', pkg, ' - R package version ', ver)
+}
+
+c(
+
+    bibentry(bibtype="manual",
+        title = "tidyFlowCore: Integrating the flowCore with the tidyverse",
+        author = personList(
+            person(
+              given = "Timothy",
+              family = "Keyes",
+              middle = "J",
+              email = "tkeyes@stanford.edu",
+              role = c("cre")
+            )
+        ),
+        year = format(Sys.Date(), "%Y"),
+        url = "http://www.bioconductor.org/packages/tidyFlowCore",
+        note = pkgVer('tidyFlowCore'),
+        doi = '10.18129/B9.bioc.tidyFlowCore'
+    )
+)

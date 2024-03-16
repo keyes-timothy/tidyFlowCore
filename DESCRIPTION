@@ -1,13 +1,55 @@
-Package: tidyflowCore
+Package: tidyFlowCore
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: tidyFlowCore: Bringing flowCore to the tidyverse
+Version: 0.99.0
+Authors@R: 
+    c(person(given = "Timothy",
+             family = "Keyes",
+             role = c("cre"),
+             email = "tkeyes@stanford.edu", 
+             comment = c(ORCID = "0000-0003-0423-9679")),
+      person(given = "Kara", 
+             family = "Davis", 
+             role = c("rth", "own"),
+             email = "kldavis@stanford.edu"), 
+      person(given = "Garry", 
+             family = "Nolan", 
+             role = c("rth", "own"), 
+             email = "gnolan@stanford.edu"))
+Description: tidyFlowCore bridges the gap between flow cytometry analysis using the 
+    flowCore Bioconductor package and the tidy data principles advocated by the tidyverse. It provides 
+    a suite of dplyr-, ggplot2-, and tidyr-like verbs specifically designed for working with flowFrame 
+    and flowSet objects as if they were tibbles; however, your data remain flowCore
+    data structures under this layer of abstraction. tidyFlowCore enables 
+    intuitive and streamlined analysis workflows that can leverage both the 
+    Bioconductor and tidyverse ecosystems for cytometry data. 
+License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
-URL: https://github.com/keyes-timothy/tidyflowCore
-BugReports: https://github.com/keyes-timothy/tidyflowCore/issues
+URL: https://github.com/keyes-timothy/tidyFlowCore
+BugReports: https://github.com/keyes-timothy/tidyFlowCore/issues
+Depends: 
+    R (>= 4.3)
+Imports: 
+    Biobase,
+    dplyr,
+    flowCore,
+    ggplot2,
+    methods,
+    purrr,
+    rlang,
+    stats,
+    stringr,
+    tibble,
+    tidyr
+RoxygenNote: 7.3.1
+Suggests: 
+    BiocStyle,
+    HDCytoData,
+    knitr,
+    RefManageR,
+    rmarkdown,
+    sessioninfo,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+biocViews: SingleCell, FlowCytometry
+VignetteBuilder: knitr
