@@ -95,6 +95,31 @@ An alternative to group_by.</p></dd>
 * A <code><a href="https://rdrr.io/pkg/flowCore/man/flowFrame-class.html" class="external-link">flowFrame</a></code>'s <code><a href="https://rdrr.io/pkg/flowCore/man/identifier-methods.html" class="external-link">identifier</a></code> is preserved.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">my_flowframe</span> <span class="op">&lt;-</span> <span class="fu"><a href="simulate_cytometry_data.html">simulate_cytometry_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">flowframe</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="va">my_flowframe</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_tail</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> flowFrame object 'V1'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> with 5 cells and 10 observables:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            name       desc     range  minRange  maxRange</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $P1   feature_1  feature_1        85         0        84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $P2   feature_2  feature_2       101         0       100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $P3   feature_3  feature_3        78         0        77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $P4   feature_4  feature_4        51         0        50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $P5   feature_5  feature_5        98         0        97</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $P6   feature_6  feature_6        60         0        59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $P7   feature_7  feature_7        83         0        82</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $P8   feature_8  feature_8        89         0        88</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $P9   feature_9  feature_9        49         0        48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $P10 feature_10 feature_10        80         0        79</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88 keywords are stored in the 'description' slot</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

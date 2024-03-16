@@ -83,6 +83,20 @@ performs computations using the names of each channel according to
 * Columns given the value NULL will be removed.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">my_flowset</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="simulate_cytometry_data.html">simulate_cytometry_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">flowset</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">my_flowset</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>new_feature <span class="op">=</span> <span class="va">feature_1</span> <span class="op">+</span> <span class="va">feature_2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A flowSet with 5 experiments.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> column names(11): feature_1 feature_2 ... feature_10 new_feature</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

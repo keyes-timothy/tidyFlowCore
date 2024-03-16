@@ -90,6 +90,33 @@ names for a named vector. Specified in a similar manner as var.</p></dd>
 <p>A vector the same size as .data.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">my_flowframe</span> <span class="op">&lt;-</span> <span class="fu"><a href="simulate_cytometry_data.html">simulate_cytometry_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">flowframe</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="va">my_flowframe</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">feature_1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] 20.648935 63.303005 70.050774 53.005867 66.655724 64.047829 27.355886</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [8]  5.490736 37.310413 78.034470 15.957017 45.452126 42.853611 27.112152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [15] 49.034760 87.483971 65.565163 92.555740 79.439484 27.588352 56.409615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [22] 92.973183 93.744850  9.163841 67.738861 42.103306 41.801208 90.113327</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [29] 97.319702 39.528194  8.772243 47.921066 80.070045 61.109413 12.481791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [36] 75.397644  4.612498 61.320526  2.047465 52.206711 23.714315 58.911583</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [43] 91.727608 15.903027 97.227531 42.265381 97.799255 78.570625 40.033646</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [50] 88.210114 15.459453 66.401497 68.943169 57.255486 35.932823 98.874733</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [57]  7.664884 64.414917 18.191687 85.908806 28.854046 98.159660  2.235729</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [64] 10.810736 84.079285 40.095047 89.011887 96.432709 54.091339 15.115402</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [71] 83.707336  1.495027 13.733397  5.369581 14.545731 16.658072 59.614033</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [78] 90.506859 35.660660 42.914162 13.146553  7.976927 51.834496 94.653320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [85] 51.723930 73.538689 32.461868 32.472141 76.520462 16.967514 99.348076</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [92] 21.094311 38.642769 85.625511 36.075798 65.986588 31.417198 72.551811</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [99] 40.809181 41.961121</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"ranges")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 100  99 100 100  98  97  98  99  97 100</span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

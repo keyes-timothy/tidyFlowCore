@@ -89,11 +89,12 @@ Medicine<br><a class="author_email" href="mailto:#"></a><a href="mailto:tkeyes@s
 <h2 id="basics">Basics<a class="anchor" aria-label="anchor" href="#basics"></a>
 </h2>
 <div class="section level3">
-<h3 id="install-tidyflowcore">Install <code>tidyFlowCore</code><a class="anchor" aria-label="anchor" href="#install-tidyflowcore"></a>
+<h3 id="installing-tidyflowcore">Installing <code>tidyFlowCore</code><a class="anchor" aria-label="anchor" href="#installing-tidyflowcore"></a>
 </h3>
 <p><code>R</code> is an open-source statistical environment which can be
 easily modified to enhance its functionality via packages. <em><a href="https://bioconductor.org/packages/3.18/tidyFlowCore" class="external-link">tidyFlowCore</a></em>
-is a <code>R</code> package available via the <a href="http://bioconductor.org" class="external-link">Bioconductor</a> repository for packages.
+is an <code>R</code> package available via <a href="http://bioconductor.org" class="external-link">Bioconductor</a>, an open-source
+repository for R packages related to biostatistics and biocomputing.
 <code>R</code> can be installed on any operating system from <a href="https://cran.r-project.org/" class="external-link">CRAN</a> after which you can install
 <em><a href="https://bioconductor.org/packages/3.18/tidyFlowCore" class="external-link">tidyFlowCore</a></em>
 by using the following commands in your <code>R</code> session:</p>
@@ -108,43 +109,46 @@ by using the following commands in your <code>R</code> session:</p>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/valid.html" class="external-link">valid</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="required-knowledge">Required knowledge<a class="anchor" aria-label="anchor" href="#required-knowledge"></a>
+<h3 id="preliminaries">Preliminaries<a class="anchor" aria-label="anchor" href="#preliminaries"></a>
 </h3>
 <p><em><a href="https://bioconductor.org/packages/3.18/tidyFlowCore" class="external-link">tidyFlowCore</a></em>
-is based on many other packages and in particular in those that have
-implemented the infrastructure needed for dealing with RNA-seq data
-(EDIT!). That is, packages like <em><a href="https://bioconductor.org/packages/3.18/SummarizedExperiment" class="external-link">SummarizedExperiment</a></em>
-(EDIT!).</p>
-<p>If you are asking yourself the question “Where do I start using
-Bioconductor?” you might be interested in <a href="http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU" class="external-link">this
+adopts the so-called “tidy” functional programming paradigm developed by
+Wickham et al. in the <code>tidyverse</code> ecosystem of R packages
+(Wickham, François, Henry, Müller, and Vaughan, 2023). For information
+about the <code>tidyverse</code> ecosytem broadly, feel free to
+reference the (free) <a href="https://r4ds.hadley.nz/" class="external-link">R for Data
+Science</a> book, the <a href="https://www.tidyverse.org/" class="external-link">tidyverse
+website</a>, or <a href="https://www.biorxiv.org/content/10.1101/2023.09.10.557072v2" class="external-link">this
+paper</a> describing the larger <code>tidyomics</code> project.</p>
+<p><em><a href="https://bioconductor.org/packages/3.18/tidyFlowCore" class="external-link">tidyFlowCore</a></em>
+integrates the <code>flowCore</code> Bioconductor package’s data
+analysis capabilities with those of the <code>tidyverse</code>. If
+you’re relatively unfamiliar with the Bioconductor project, you might be
+interested in <a href="http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU" class="external-link">this
 blog post</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="asking-for-help">Asking for help<a class="anchor" aria-label="anchor" href="#asking-for-help"></a>
 </h3>
-<p>As package developers, we try to explain clearly how to use our
-packages and in which order to use the functions. But <code>R</code> and
-<code>Bioconductor</code> have a steep learning curve so it is critical
-to learn where to ask for help. The blog post quoted above mentions some
-but we would like to highlight the <a href="https://support.bioconductor.org/" class="external-link">Bioconductor support site</a>
-as the main resource for getting help: remember to use the
-<code>tidyFlowCore</code> tag and check <a href="https://support.bioconductor.org/tag/tidyFlowCore/" class="external-link">the older
-posts</a>. Other alternatives are available such as creating GitHub
-issues and tweeting. However, please note that if you want to receive
-help you should adhere to the <a href="http://www.bioconductor.org/help/support/posting-guide/" class="external-link">posting
-guidelines</a>. It is particularly critical that you provide a small
-reproducible example and your session information so package developers
-can track down the source of the error.</p>
+<p>Learning to use <code>R</code> and <code>Bioconductor</code> can be
+challenging, so it’s important to know where to get help. The main place
+to ask questions about <code>tidyFlowCore</code> is the <a href="https://support.bioconductor.org/" class="external-link">Bioconductor support site</a>.
+Use the <code>tidyFlowCore</code> tag there and look at <a href="https://support.bioconductor.org/tag/tidyFlowCore/" class="external-link">previous
+posts</a>.</p>
+<p>You can also ask questions on GitHub or Twitter. But remember, if
+you’re asking for help, follow the <a href="http://www.bioconductor.org/help/support/posting-guide/" class="external-link">posting
+guidelines</a>. Make sure to include a simple example that reproduces
+your issue (a <a href="https://reprex.tidyverse.org/articles/learn-reprex.html" class="external-link">“reprex”</a>)
+and your session info to help developers understand and solve your
+problem.</p>
 </div>
 <div class="section level3">
 <h3 id="citing-tidyflowcore">Citing <code>tidyFlowCore</code><a class="anchor" aria-label="anchor" href="#citing-tidyflowcore"></a>
 </h3>
-<p>We hope that <em><a href="https://bioconductor.org/packages/3.18/tidyFlowCore" class="external-link">tidyFlowCore</a></em>
-will be useful for your research. Please use the following information
-to cite the package and the overall approach. Thank you!</p>
+<p>If you use <em><a href="https://bioconductor.org/packages/3.18/tidyFlowCore" class="external-link">tidyFlowCore</a></em>
+for your research, please use the following citation.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Citation info</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"tidyFlowCore"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"tidyFlowCore"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning in person1(given = given[[i]], family = family[[i]], middle =</span></span>
 <span><span class="co">#&gt; middle[[i]], : It is recommended to use 'given' instead of 'middle'.</span></span>
 <span><span class="co">#&gt; To cite package 'tidyFlowCore' in publications use:</span></span>
@@ -169,7 +173,8 @@ to cite the package and the overall approach. Thank you!</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="quick-start-to-using-tidyflowcore">Quick start to using <code>tidyFlowCore</code><a class="anchor" aria-label="anchor" href="#quick-start-to-using-tidyflowcore"></a>
+<h2 id="tidyflowcore-quick-start">
+<code>tidyFlowCore</code> quick start<a class="anchor" aria-label="anchor" href="#tidyflowcore-quick-start"></a>
 </h2>
 <p><code>tidyFlowCore</code> allows you to treat <code>flowCore</code>
 data structures like tidy <code>data.frame</code>s or
@@ -191,6 +196,11 @@ the functions of the <code>dplyr</code>, <code>tidyr</code>, and
 <div class="section level3">
 <h3 id="read-data">Read data<a class="anchor" aria-label="anchor" href="#read-data"></a>
 </h3>
+<p>For our example here, we download some publicly available mass
+cytometry (CyTOF) data downloadable through the (Weber, M, Soneson, and
+Charlotte, 2019) package. These data are made available as a
+<code><a href="https://rdrr.io/pkg/flowCore/man/flowSet-class.html" class="external-link">flowCore::flowSet</a></code> S4 object, <code>Bioconductor</code>’s
+standard data structure for cytometry data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># read data from the HDCytoData package</span></span>
 <span><span class="va">bcr_flowset</span> <span class="op">&lt;-</span> <span class="fu">HDCytoData</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HDCytoData/man/Bodenmiller_BCR_XL_SE.html" class="external-link">Bodenmiller_BCR_XL_flowSet</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -200,6 +210,9 @@ the functions of the <code>dplyr</code>, <code>tidyr</code>, and
 <span><span class="co">#&gt; loading from cache</span></span>
 <span><span class="co">#&gt; Warning in updateObjectFromSlots(object, ..., verbose = verbose): dropping</span></span>
 <span><span class="co">#&gt; slot(s) 'colnames' from object = 'flowSet'</span></span></code></pre></div>
+<p>To read more about this dataset, run the following command:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">?</span><span class="fu">HDCytoData</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/HDCytoData/man/Bodenmiller_BCR_XL_SE.html" class="external-link">Bodenmiller_BCR_XL_flowSet</a></span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="data-transformation">Data transformation<a class="anchor" aria-label="anchor" href="#data-transformation"></a>
@@ -210,7 +223,7 @@ use of its <code>tranform</code> class.</p>
 <p>For example, if we want to apply the standard arcsinh transformation
 often used for CyTOF data to our current dataset, we could use the
 following code:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">asinh_transformation</span> <span class="op">&lt;-</span> <span class="fu">flowCore</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/flowCore/man/arcsinhTransform.html" class="external-link">arcsinhTransform</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">0</span>, b <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">5</span>, c <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">transformation_list</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu">flowCore</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/flowCore/man/transformList-class.html" class="external-link">transformList</a></span><span class="op">(</span></span>
@@ -223,7 +236,7 @@ following code:</p>
 functional programming paradigm to perform the same transformation. For
 this, we use the mutate-across framework via
 <code>tidyFlowCore</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">transformed_bcr_flowset</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">bcr_flowset</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="op">-</span><span class="fu">ends_with</span><span class="op">(</span><span class="st">"_id"</span><span class="op">)</span>, \<span class="op">(</span><span class="va">.x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Hyperbolic.html" class="external-link">asinh</a></span><span class="op">(</span><span class="va">.x</span> <span class="op">/</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -236,7 +249,7 @@ to each cell type (encoded in the <code>population_id</code> column of
 <code>bcr_flowset</code>) in our dataset. Using standard
 <code>flowCore</code> functions, we could perform this calculation in a
 few steps:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># extract all expression matrices from our flowSet </span></span>
 <span><span class="va">combined_matrix</span> <span class="op">&lt;-</span> <span class="fu">flowCore</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/flowCore/man/fsApply.html" class="external-link">fsApply</a></span><span class="op">(</span><span class="va">bcr_flowset</span>, <span class="va">exprs</span><span class="op">)</span></span>
 <span></span>
@@ -251,7 +264,7 @@ few steps:</p>
 <p><code>tidyFlowCore</code> allows us to perform the same operation
 simply using the <code>dplyr</code> package’s <code>count</code>
 function:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bcr_flowset</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">population_id</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 8 × 2</span></span></span>
@@ -267,7 +280,7 @@ function:</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span>             8  <span style="text-decoration: underline;">3</span>901</span></span></code></pre></div>
 <p>And <code>tidyFlowCore</code> also makes it easy to perform the
 counting broken down by other variables in our metadata:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bcr_flowset</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="co"># use the .tidyFlowCore_identifier pronoun to access the name of </span></span>
 <span>  <span class="co"># each experiment in the flowSet </span></span>
@@ -308,13 +321,13 @@ synonyms (grouped <code>data.frames</code> are different from nested
 <code>tidyFlowCore</code>’s <code>group</code>/<code>nest</code> and
 <code>ungroup</code>/<code>unnest</code> functions have identical
 behavior, respectively.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># unnesting a flowSet results in a flowFrame with an additional column, </span></span>
 <span><span class="co"># 'tidyFlowCore_name` that identifies cells based on which experiment in the </span></span>
 <span><span class="co"># original flowSet they come from</span></span>
 <span><span class="va">bcr_flowset</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; flowFrame object 'file1ad75625c776'</span></span>
+<span><span class="co">#&gt; flowFrame object 'file1b1f460605e9'</span></span>
 <span><span class="co">#&gt; with 172791 cells and 40 observables:</span></span>
 <span><span class="co">#&gt;                    name               desc     range  minRange  maxRange</span></span>
 <span><span class="co">#&gt; $P1                Time               Time   2399633    0.0000   2399632</span></span>
@@ -329,7 +342,7 @@ behavior, respectively.</p>
 <span><span class="co">#&gt; $P39      population_id      population_id         9         0         8</span></span>
 <span><span class="co">#&gt; $P40 .tidyFlowCore_name .tidyFlowCore_name        17         0        16</span></span>
 <span><span class="co">#&gt; 297 keywords are stored in the 'description' slot</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># flowSets can be unnested and renested for various analyses</span></span>
 <span><span class="va">bcr_flowset</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -356,28 +369,21 @@ behavior, respectively.</p>
 <p><code>tidyFlowCore</code> also provides a direct interface between
 <code>ggplot2</code> and <code>flowFrame</code> or <code>flowSet</code>
 data objects. For example…</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="va">bcr_flowset</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="op">-</span><span class="fu">ends_with</span><span class="op">(</span><span class="st">"_id"</span><span class="op">)</span>, \<span class="op">(</span><span class="va">.x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Hyperbolic.html" class="external-link">asinh</a></span><span class="op">(</span><span class="va">.x</span> <span class="op">/</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">`CD45(In115)Dd`</span>, y <span class="op">=</span> <span class="va">`CD4(Nd145)Dd`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.1</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span>facets <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">population_id</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="tidyFlowCore_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
-<p>Here is an example of you can cite your package inside the
-vignette:</p>
-<ul>
-<li>
-<em><a href="https://bioconductor.org/packages/3.18/tidyFlowCore" class="external-link">tidyFlowCore</a></em>
-(Keyes, 2024)</li>
-</ul>
+<p><img src="tidyFlowCore_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="reproducibility">Reproducibility<a class="anchor" aria-label="anchor" href="#reproducibility"></a>
 </h2>
 <p>The <em><a href="https://bioconductor.org/packages/3.18/tidyFlowCore" class="external-link">tidyFlowCore</a></em>
-package (Keyes, 2024) was made possible thanks to:</p>
+package (Keyes, 2024) was made possible thanks to the following:</p>
 <ul>
 <li>R (R Core Team, 2024)</li>
 <li>
@@ -399,10 +405,13 @@ Cheng, Chang, and Iannone, 2024)</li>
 <li>
 <em><a href="https://CRAN.R-project.org/package=testthat" class="external-link">testthat</a></em>
 (Wickham, 2011)</li>
+<li>
+<em><a href="https://CRAN.R-project.org/package=tidyverse" class="external-link">tidyverse</a></em>
+(Wickham, François, Henry et al., 2023)</li>
 </ul>
 <p>This package was developed using <em><a href="https://bioconductor.org/packages/3.18/biocthis" class="external-link">biocthis</a></em>.</p>
 <p>Code for creating the vignette</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Create the vignette</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/rmarkdown" class="external-link">"rmarkdown"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">render</a></span><span class="op">(</span><span class="st">"tidyFlowCore.Rmd"</span>, <span class="st">"BiocStyle::html_document"</span><span class="op">)</span><span class="op">)</span></span>
@@ -411,9 +420,9 @@ Cheng, Chang, and Iannone, 2024)</li>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"tidyFlowCore.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span><span class="co">#&gt; [1] "2024-03-16 16:22:04 UTC"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "2024-03-16 17:58:49 UTC"</span></span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span><span class="co">#&gt; Time difference of 27.228 secs</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; Time difference of 23.69 secs</span></span></code></pre>
 <p><code>R</code> session information.</p>
 <pre><code><span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
@@ -594,19 +603,31 @@ Computing</em>. R Foundation for Statistical Computing. Vienna, Austria,
 <a href="https://www.R-project.org/" class="external-link">https://www.R-project.org/</a>.</cite>
 </p>
 <p>
-<a id="bib-wickham2011testthat"></a><a href="#cite-wickham2011testthat">[6]</a><cite>
+<a id="bib-weber2019hdcytodata"></a><a href="#cite-weber2019hdcytodata">[6]</a><cite>
+Weber, L. M, Soneson, et al. “HDCytoData: Collection of high-dimensional
+cytometry benchmark datasets in Bioconductor object formats”. In:
+<em>F1000Research</em> 8.v2 (2019), p. 1459.</cite>
+</p>
+<p>
+<a id="bib-wickham2011testthat"></a><a href="#cite-wickham2011testthat">[7]</a><cite>
 H. Wickham. “testthat: Get Started with Testing”. In: <em>The R
 Journal</em> 3 (2011), pp. 5–10. URL:
 <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf" class="external-link">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.</cite>
 </p>
 <p>
-<a id="bib-wickham2021sessioninfo"></a><a href="#cite-wickham2021sessioninfo">[7]</a><cite>
+<a id="bib-wickham2021sessioninfo"></a><a href="#cite-wickham2021sessioninfo">[8]</a><cite>
 H. Wickham, W. Chang, R. Flight, et al. <em>sessioninfo: R Session
 Information</em>. R package version 1.2.2, <a href="https://r-lib.github.io/sessioninfo/" class="external-link uri">https://r-lib.github.io/sessioninfo/</a>. 2021. URL:
 <a href="https://github.com/r-lib/sessioninfo#readme" class="external-link">https://github.com/r-lib/sessioninfo#readme</a>.</cite>
 </p>
 <p>
-<a id="bib-xie2023knitr"></a><a href="#cite-xie2023knitr">[8]</a><cite>
+<a id="bib-wickham2023dplyr"></a><a href="#cite-wickham2023dplyr">[9]</a><cite>
+H. Wickham, R. François, L. Henry, et al. <em>dplyr: A Grammar of Data
+Manipulation</em>. R package version 1.1.4, <a href="https://github.com/tidyverse/dplyr" class="external-link uri">https://github.com/tidyverse/dplyr</a>. 2023. URL:
+<a href="https://dplyr.tidyverse.org" class="external-link">https://dplyr.tidyverse.org</a>.</cite>
+</p>
+<p>
+<a id="bib-xie2023knitr"></a><a href="#cite-xie2023knitr">[10]</a><cite>
 Y. Xie. <em>knitr: A General-Purpose Package for Dynamic Report
 Generation in R</em>. R package version 1.45. 2023. URL:
 <a href="https://yihui.org/knitr/" class="external-link">https://yihui.org/knitr/</a>.</cite>

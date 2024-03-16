@@ -75,13 +75,29 @@ performs computations using the names of each channel according to
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A <code><a href="https://rdrr.io/pkg/flowCore/man/flowFrame-class.html" class="external-link">flowFrame</a></code>. The output has the following properties:
+<p>A <code><a href="https://rdrr.io/pkg/flowCore/man/flowFrame-class.html" class="external-link">flowFrame</a></code>. The output has the following
+properties:
 * Columns created or modified through ... will be returned in the order specified by ....
 * The number of rows is not affected.
 * Columns given the value NULL will be removed.
 * The <code><a href="https://rdrr.io/pkg/flowCore/man/flowFrame-class.html" class="external-link">flowFrame</a></code>'s <code><a href="https://rdrr.io/pkg/flowCore/man/identifier-methods.html" class="external-link">identifier</a></code> will be preserved.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">my_flowframe</span> <span class="op">&lt;-</span> <span class="fu"><a href="simulate_cytometry_data.html">simulate_cytometry_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">flowframe</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="va">my_flowframe</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html" class="external-link">transmute</a></span><span class="op">(</span>new_feature <span class="op">=</span> <span class="va">feature_1</span> <span class="op">+</span> <span class="va">feature_2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> flowFrame object 'V1'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> with 100 cells and 1 observables:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            name        desc     range  minRange  maxRange</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $P1 new_feature new_feature       183         0       182</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 keywords are stored in the 'description' slot</span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
