@@ -17,12 +17,12 @@ pulls](https://img.shields.io/github/issues-pr/keyes-timothy/tidyflowCore)](http
 <!-- badges: end -->
 
 `tidyFlowCore` is an R package that bridges the gap between flow
-cytometry analysis using the `flowCore` package and the tidy data
-principles advocated by the `tidyverse.` It provides a suite of
-`dplyr`-, `ggplot2`-, and `tidyr`-like verbs specifically designed for
-working with `flowFrame` and `flowSet` objects as if they were tibbles;
-however, your data remain `flowCore` `flowFrame`s and `flowSet`s under
-this layer of abstraction.
+cytometry analysis using the `flowCore` Bioconductor package and the
+tidy data principles advocated by the `tidyverse.` It provides a suite
+of `dplyr`-, `ggplot2`-, and `tidyr`-like verbs specifically designed
+for working with `flowFrame` and `flowSet` objects as if they were
+tibbles; however, your data remain `flowCore` `flowFrame`s and
+`flowSet`s under this layer of abstraction.
 
 Using this approach, `tidyFlowCore` enables intuitive and streamlined
 analysis workflows that can leverage both the Bioconductor and tidyverse
@@ -52,8 +52,8 @@ BiocManager::install("keyes-timothy/tidyFlowCore")
 ## Example
 
 `tidyFlowCore` allows you to treat `flowCore` data structures like tidy
-`data.frame`s or `tibbles`. It does so by implementing dplyr, tidyr, and
-ggplot2 verbs that can be deployed directly on the `flowFrame` and
+`data.frame`s or `tibble`s It does so by implementing `dplyr`, `tidyr`,
+and `ggplot2` verbs that can be deployed directly on the `flowFrame` and
 `flowSet` S4 classes.
 
 In this section, we give a brief example of how `tidyFlowCore` can
@@ -193,7 +193,7 @@ identical behavior, respectively.
 # original flowSet they come from
 bcr_flowset |> 
   dplyr::ungroup()
-#> flowFrame object 'file93123e01cac8'
+#> flowFrame object 'filea2b057adc326'
 #> with 172791 cells and 40 observables:
 #>                    name               desc     range  minRange  maxRange
 #> $P1                Time               Time   2399633    0.0000   2399632
