@@ -45,7 +45,7 @@ bib <- c(
     rmarkdown = citation("rmarkdown")[1],
     sessioninfo = citation("sessioninfo")[1],
     testthat = citation("testthat")[1],
-    tidyverse = citation("tidyverse")[1],
+    tidyverse = citation("dplyr")[1],
     HDCytoData = citation("HDCytoData")[1],
     tidyFlowCore = citation("tidyFlowCore")[1]
 )
