@@ -33,6 +33,17 @@ test_that(
         nrow(),
       2L
     )
+
+    expect_equal(
+      suppressWarnings(
+        test_flowframe |>
+          tidyr::nest(random_group) |>
+          flowCore::pData() |>
+          nrow()
+      ),
+      2L
+    )
+
   })
 
 test_that("Nesting a flowFrame returns a flowSet with the correct columns", {
@@ -40,6 +51,15 @@ test_that("Nesting a flowFrame returns a flowSet with the correct columns", {
     test_flowframe |>
       tidyr::nest(.by = random_group) |>
       colnames(),
+    colnames(dplyr::select(test_flowframe, -random_group))
+  )
+
+  expect_equal(
+    suppressWarnings(
+      test_flowframe |>
+        tidyr::nest(random_group) |>
+        colnames()
+    ),
     colnames(dplyr::select(test_flowframe, -random_group))
   )
 })
