@@ -7,7 +7,7 @@ pkgVer <- function(pkg) {
 c(
 
     bibentry(bibtype="manual",
-        title = "tidyFlowCore: Integrating the flowCore with the tidyverse",
+        title = "tidyFlowCore: Bringing flowCore to the tidyverse",
         author = personList(
             person(
               given = "Timothy",

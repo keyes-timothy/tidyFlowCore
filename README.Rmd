@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 [![GitHub pulls](https://img.shields.io/github/issues-pr/keyes-timothy/tidyflowCore)](https://github.com/keyes-timothy/tidyflowCore/pulls)
 <!-- badges: end -->
 
-`tidyFlowCore` is an R package that bridges the gap between flow cytometry analysis using the flowCore package and the tidy data principles advocated by the tidyverse. It provides a suite of `dplyr`-, `ggplot2`-, and `tidyr`-like verbs specifically designed for working with `flowFrame` and `flowSet` objects as if they were tibbles; however, your data remain `flowCore` `flowFrame`s and `flowSet`s under this layer of abstraction. 
+`tidyFlowCore` is an R package that bridges the gap between flow cytometry analysis using the flowCore package and the tidy data principles advocated by the `tidyverse.` It provides a suite of `dplyr`-, `ggplot2`-, and `tidyr`-like verbs specifically designed for working with `flowFrame` and `flowSet` objects as if they were tibbles; however, your data remain `flowCore` `flowFrame`s and `flowSet`s under this layer of abstraction. 
 
 Using this approach, `tidyFlowCore` enables intuitive and streamlined analysis workflows that can leverage both the Bioconductor and tidyverse ecosystems for cytometry data.  
 

@@ -25,7 +25,7 @@ Description: tidyFlowCore bridges the gap between flow cytometry analysis using 
     Bioconductor and tidyverse ecosystems for cytometry data. 
 License: MIT + file LICENSE
 Encoding: UTF-8
-URL: https://github.com/keyes-timothy/tidyFlowCore
+URL: https://github.com/keyes-timothy/tidyFlowCore, https://keyes-timothy.github.io/tidyFlowCore/
 BugReports: https://github.com/keyes-timothy/tidyFlowCore/issues
 Depends: 
     R (>= 4.3)
