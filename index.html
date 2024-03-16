@@ -81,7 +81,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><code>tidyFlowCore</code> is an R package that bridges the gap between flow cytometry analysis using the <code>flowCore</code> package and the tidy data principles advocated by the <code>tidyverse.</code> It provides a suite of <code>dplyr</code>-, <code>ggplot2</code>-, and <code>tidyr</code>-like verbs specifically designed for working with <code>flowFrame</code> and <code>flowSet</code> objects as if they were tibbles; however, your data remain <code>flowCore</code> <code>flowFrame</code>s and <code>flowSet</code>s under this layer of abstraction.</p>
+<p><code>tidyFlowCore</code> is an R package that bridges the gap between flow cytometry analysis using the <code>flowCore</code> Bioconductor package and the tidy data principles advocated by the <code>tidyverse.</code> It provides a suite of <code>dplyr</code>-, <code>ggplot2</code>-, and <code>tidyr</code>-like verbs specifically designed for working with <code>flowFrame</code> and <code>flowSet</code> objects as if they were tibbles; however, your data remain <code>flowCore</code> <code>flowFrame</code>s and <code>flowSet</code>s under this layer of abstraction.</p>
 <p>Using this approach, <code>tidyFlowCore</code> enables intuitive and streamlined analysis workflows that can leverage both the Bioconductor and tidyverse ecosystems for cytometry data.</p>
 <div class="section level2">
 <h2 id="installation-instructions">Installation instructions<a class="anchor" aria-label="anchor" href="#installation-instructions"></a>
@@ -100,7 +100,7 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p><code>tidyFlowCore</code> allows you to treat <code>flowCore</code> data structures like tidy <code>data.frame</code>s or <code>tibbles</code>. It does so by implementing dplyr, tidyr, and ggplot2 verbs that can be deployed directly on the <code>flowFrame</code> and <code>flowSet</code> S4 classes.</p>
+<p><code>tidyFlowCore</code> allows you to treat <code>flowCore</code> data structures like tidy <code>data.frame</code>s or <code>tibble</code>s It does so by implementing <code>dplyr</code>, <code>tidyr</code>, and <code>ggplot2</code> verbs that can be deployed directly on the <code>flowFrame</code> and <code>flowSet</code> S4 classes.</p>
 <p>In this section, we give a brief example of how <code>tidyFlowCore</code> can enable a data analysis pipeline to use all the useful functions of the <code>flowCore</code> package and many of the functions of the <code>dplyr</code>, <code>tidyr</code>, and <code>ggplot2</code> packages.</p>
 <div class="section level3">
 <h3 id="load-required-packages">Load required packages<a class="anchor" aria-label="anchor" href="#load-required-packages"></a>
@@ -201,7 +201,7 @@
 <span><span class="co"># original flowSet they come from</span></span>
 <span><span class="va">bcr_flowset</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; flowFrame object 'file93123e01cac8'</span></span>
+<span><span class="co">#&gt; flowFrame object 'filea2b057adc326'</span></span>
 <span><span class="co">#&gt; with 172791 cells and 40 observables:</span></span>
 <span><span class="co">#&gt;                    name               desc     range  minRange  maxRange</span></span>
 <span><span class="co">#&gt; $P1                Time               Time   2399633    0.0000   2399632</span></span>
