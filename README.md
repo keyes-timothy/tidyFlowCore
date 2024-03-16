@@ -9,10 +9,15 @@
 issues](https://img.shields.io/github/issues/keyes-timothy/tidyflowCore)](https://github.com/keyes-timothy/tidyflowCore/issues)
 [![GitHub
 pulls](https://img.shields.io/github/issues-pr/keyes-timothy/tidyflowCore)](https://github.com/keyes-timothy/tidyflowCore/pulls)
+[![R-CMD-check-bioc](https://github.com/keyes-timothy/tidyFlowCore/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/keyes-timothy/tidyFlowCore/actions)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Codecov test
+coverage](https://codecov.io/gh/keyes-timothy/tidyFlowCore/branch/main/graph/badge.svg)](https://app.codecov.io/gh/keyes-timothy/tidyFlowCore?branch=main)
 <!-- badges: end -->
 
 `tidyFlowCore` is an R package that bridges the gap between flow
-cytometry analysis using the flowCore package and the tidy data
+cytometry analysis using the `flowCore` package and the tidy data
 principles advocated by the `tidyverse.` It provides a suite of
 `dplyr`-, `ggplot2`-, and `tidyr`-like verbs specifically designed for
 working with `flowFrame` and `flowSet` objects as if they were tibbles;
@@ -188,7 +193,7 @@ identical behavior, respectively.
 # original flowSet they come from
 bcr_flowset |> 
   dplyr::ungroup()
-#> flowFrame object 'file5b051566b058'
+#> flowFrame object 'file65d359acd5bd'
 #> with 172791 cells and 40 observables:
 #>                    name               desc     range  minRange  maxRange
 #> $P1                Time               Time   2399633    0.0000   2399632
