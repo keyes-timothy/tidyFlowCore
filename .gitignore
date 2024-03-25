@@ -4,5 +4,7 @@
 .Ruserdata
 inst/doc
 docs
-.DS_Store
+**/.DS_Store
 
+
+ git remote add upstream git@git.bioconductor.org:packages/<YOUR-REPOSITORY-NAME>.git
