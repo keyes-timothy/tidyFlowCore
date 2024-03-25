@@ -32,5 +32,4 @@ my_flowset <- simulate_cytometry_data()$flowset
 my_flowset |>
   dplyr::pull(feature_1)
 
-
 }
